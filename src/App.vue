@@ -1,19 +1,46 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div v-if="gameStart==false">
+      <button @click="start(),randomplayer(0,3),starts()" class="btn btn-danger">Start</button>
+    </div>
+
+    <div class="col-md-6">
+      <game :gameStart="gameStart" :you="you" ref="gm" />
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import game from "./components/game.vue";
 
 export default {
-  name: 'App',
+  name: "App",
+
   components: {
-    HelloWorld
-  }
-}
+    game,
+  },
+  data: function () {
+    return {
+      gameStart: false,
+      you: 0,
+    };
+  },
+  methods: {
+    start() {
+      this.gameStart = true;
+    },
+    randomplayer: function (min, max) {
+      this.you = Math.max(Math.floor(Math.random() * max) + 1, min);
+      return this.you;
+    
+      
+    },
+    starts() {
+      this.$refs.gm.starthp()
+
+    }
+  },
+};
 </script>
 
 <style>
