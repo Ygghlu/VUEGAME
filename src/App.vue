@@ -1,16 +1,25 @@
+/* eslint-disable no-unused-vars */
 <template>
-  <div id="app">
-    <div v-if="gameStart==false">
-      <button @click="start(),randomplayer(0,3),starts()" class="btn btn-danger">Start</button>
-    </div>
+  <div id="app" class="w-100 h-100 p-3 mx-auto flex-column">
+   
 
-    <div class="col-md-6">
-      <game :gameStart="gameStart" :you="you" ref="gm" />
-    </div>
+
+      <game />
+
   </div>
 </template>
 
 <script>
+import Vue from 'vue'
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+import './assets/css/cover.css'
+import VueCarousel from 'vue-carousel';
+Vue.use(VueCarousel);
+Vue.use(BootstrapVue)
+Vue.use(BootstrapVueIcons)
+
 import game from "./components/game.vue";
 
 export default {
@@ -19,27 +28,9 @@ export default {
   components: {
     game,
   },
-  data: function () {
-    return {
-      gameStart: false,
-      you: 0,
-    };
-  },
-  methods: {
-    start() {
-      this.gameStart = true;
-    },
-    randomplayer: function (min, max) {
-      this.you = Math.max(Math.floor(Math.random() * max) + 1, min);
-      return this.you;
-    
-      
-    },
-    starts() {
-      this.$refs.gm.starthp()
+  
+  
 
-    }
-  },
 };
 </script>
 
@@ -49,7 +40,8 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 64px;
+
+
 }
 </style>
