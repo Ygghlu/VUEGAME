@@ -65,11 +65,12 @@
         </div>
       </div>
     </div>
-    <div v-if="gameStart==true " class="container justify-content-center">
-      <div class="row align-items-end">
-        <div class="col-5 h-100 d-inline-block">
+    <div v-if="gameStart==true " class="justify-content-center container " >
+      <div class="border round shimosa " >
+        <div class="row align-items-end ">
+        <div class="col-5 h-100 d-inline-block ">
           <img
-            class="img-fluid"
+            class="img-fluid mt-5 mb-3"
             :style="{width: hpplayer +'%'}"
             :src="player[num].src"
             alt="player pic"
@@ -88,7 +89,7 @@
         </div>
         <div class="col-5 h-100 d-inline-block align-self-end">
           <img
-            class="img-fluid"
+            class="img-fluid mt-5 mb-3"
             :style="{width: hpenemy +'%'}"
             :src="enemy[ennum].src"
             alt="enemy pic"
@@ -103,7 +104,7 @@
           ></b-progress>
         </div>
       </div>
-      <div class="row justify-content-between mb-3">
+       <div class="row justify-content-between mb-3">
         <div class="col-5">
           {{player[num].name}}
           <br />
@@ -116,6 +117,10 @@
           HP : {{hpenemy}}
         </div>
       </div>
+
+      </div>
+      
+     
       <div v-if="startatt==true" class="row justify-content-center">
         <p>
           You did {{damage}} damage!
@@ -334,4 +339,8 @@ export default {
 </script>
 
 <style>
+.shimosa{
+  background-image: url('../assets/img/Requiem_bg_8.png');
+  background-size: cover;
+}
 </style>
