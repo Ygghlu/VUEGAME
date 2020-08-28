@@ -22,30 +22,44 @@
       <h2 class="mt-5">Charactor</h2>
       <div class="row justify-content-center">
         <div class="col-md-10">
-          <carousel :perPage="4" :navigationEnabled="true" :loop="true" :autoplay="true" :autoplayTimeout="5000">
+          <carousel
+            :perPage="4"
+            :navigationEnabled="true"
+            :loop="true"
+            :autoplay="true"
+            :autoplayTimeout="5000"
+          >
             <slide>
-              <img class="img-fluid" :src="player[0].portrait" alt srcset /> Player <br> Arjuna
+              <img class="img-fluid" :src="player[0].portrait" alt srcset /> Player
+              <br />Arjuna<br /> {{player[0].des}}
             </slide>
             <slide>
-              <img class="img-fluid" :src="player[1].portrait" alt srcset /> Player <br> Dioscuri
+              <img class="img-fluid" :src="player[1].portrait" alt srcset /> Player
+              <br />Dioscuri<br /> {{player[1].des}}
             </slide>
             <slide>
-              <img class="img-fluid" :src="player[2].portrait" alt srcset /> Player <br> Akuta Hinako
+              <img class="img-fluid" :src="player[2].portrait" alt srcset /> Player
+              <br />Akuta Hinako<br /> {{player[2].des}}
             </slide>
             <slide>
-              <img class="img-fluid" :src="player[3].portrait" alt srcset /> Player <br> Arthur Pendragon
+              <img class="img-fluid" :src="player[3].portrait" alt srcset /> Player
+              <br />Arthur Pendragon<br /> {{player[3].des}}
             </slide>
             <slide>
-              <img class="img-fluid" :src="enemy[0].portrait" alt srcset /> Enemy <br> Yog-Sothoth
+              <img class="img-fluid" :src="enemy[0].portrait" alt srcset /> Enemy
+              <br />Yog-Sothoth<br /> {{enemy[0].des}}
             </slide>
             <slide>
-              <img class="img-fluid" :src="enemy[1].portrait" alt srcset />Enemy <br> Cthugha
+              <img class="img-fluid" :src="enemy[1].portrait" alt srcset />Enemy
+              <br />Cthugha<br /> {{enemy[1].des}}
             </slide>
             <slide>
-              <img class="img-fluid" :src="enemy[2].portrait" alt srcset /> Enemy <br> Nyalathotep
+              <img class="img-fluid" :src="enemy[2].portrait" alt srcset /> Enemy
+              <br />Nyalathotep<br /> {{enemy[2].des}}
             </slide>
             <slide>
-              <img class="img-fluid" :src="enemy[3].portrait" alt srcset /> Enemy <br> Demonic Bodhisattva of Digital Sea,Beast III/R
+              <img class="img-fluid" :src="enemy[3].portrait" alt srcset /> Enemy
+              <br />Demonic Bodhisattva of Digital Sea,Beast III/R<br /> {{enemy[3].des}}
             </slide>
           </carousel>
         </div>
@@ -53,7 +67,7 @@
     </div>
     <div v-if="gameStart==true " class="container justify-content-center">
       <div class="row align-items-end">
-        <div class="col-5 h-100 d-inline-block ">
+        <div class="col-5 h-100 d-inline-block">
           <img
             class="img-fluid"
             :style="{width: hpplayer +'%'}"
@@ -69,7 +83,9 @@
             animated
           ></b-progress>
         </div>
-        <div class="col-2 align-self-center"><img class="img-fluid " src="../assets/img/img_418591.png" alt="Versus Icon"></div>
+        <div class="col-2 align-self-center">
+          <img class="img-fluid" src="../assets/img/img_418591.png" alt="Versus Icon" />
+        </div>
         <div class="col-5 h-100 d-inline-block align-self-end">
           <img
             class="img-fluid"
@@ -88,9 +104,17 @@
         </div>
       </div>
       <div class="row justify-content-between mb-3">
-        <div class="col-5">{{player[num].name}} <br/>HP : {{hpplayer}}</div>
+        <div class="col-5">
+          {{player[num].name}}
+          <br />
+          HP : {{hpplayer}}
+        </div>
         <div></div>
-        <div class="col-5">{{enemy[ennum].name}}<br/> HP : {{hpenemy}}</div>
+        <div class="col-5">
+          {{enemy[ennum].name}}
+          <br />
+          HP : {{hpenemy}}
+        </div>
       </div>
       <div v-if="startatt==true" class="row justify-content-center">
         <p>
@@ -98,6 +122,9 @@
           <br />
           {{enemy[ennum].name}} attack! You got {{monattack}} damage!
         </p>
+      </div>
+        <div v-if="startatt==true" class="row justify-content-center">
+          <p v-if="burn==true">You got {{burnstack}} burn wound! Losing {{burndam**burnstack}} hp!! </p>
       </div>
       <div class="row justify-content-center" v-if="gameEnd==false">
         <div class="col-md-2">
@@ -114,7 +141,6 @@
         </div>
       </div>
 
-      
       <div v-if="hpenemy<=0 & hpplayer<=0" v-on="enemyhpSet()">
         <div v-on="playerhpSet()"></div>
         <p class="font-weight-bold" v-on="ending()">Draw!</p>
@@ -126,7 +152,11 @@
         <p class="font-weight-bold" v-on="ending()">You Win!</p>
       </div>
       <div v-if="gameEnd==true">
-        <button class="btn btn-danger" onClick="window.location.href=window.location.href"><img class="image-fluid" src="../assets/img/BBSkip.png" > <br> Restart Game?</button>
+        <button class="btn" onclick="window.location.href=window.location.href">
+          <img class="w-50 image-fluid" src="../assets/img/BBSkip.png" />
+          <br />
+          <p class="font-white lead">Restart Game?</p>
+        </button>
       </div>
     </div>
   </div>
@@ -147,6 +177,7 @@ export default {
           attsound: require("../assets/sound/arjuna-att.ogg"),
           specsound: require("../assets/sound/arjuna-spec.ogg"),
           portrait: require("../assets/img/Arjuna_(Alter)4.png"),
+          des: "เทพผู้มีพลังแข็งแกร่ง",
         },
         {
           name: "Dioscuri",
@@ -156,6 +187,7 @@ export default {
           attsound: require("../assets/sound/dio-att.ogg"),
           specsound: require("../assets/sound/dio-spec.ogg"),
           portrait: require("../assets/img/Dioscuri_4.png"),
+          des: "เทพฝาแฝด โจมตี2ครั้งซ้อน",
         },
         {
           name: "Akuta Hinako",
@@ -165,15 +197,17 @@ export default {
           attsound: require("../assets/sound/yu-att.ogg"),
           specsound: require("../assets/sound/Yu-attack.ogg"),
           portrait: require("../assets/img/YuMiaoyiStage01.png"),
+          des: "แวมไพร์สาว บอบบางแต่พลังโจมตีสูง",
         },
         {
           name: "Arthur Pendragon",
-          hp: 188,
+          hp: 250,
           src: require("../assets/img/ArthurSprite3.png"),
           multi: 1.4,
           attsound: require("../assets/sound/art-att.ogg"),
           specsound: require("../assets/sound/art-spec.ogg"),
           portrait: require("../assets/img/Arthur4.png"),
+          des: "นักดาบที่บาลานซ์",
         },
       ],
       enemy: [
@@ -184,6 +218,7 @@ export default {
           multi: 1.2,
           bgm: require("../assets/sound/abby-theme.ogg"),
           portrait: require("../assets/img/abby-pr.png"),
+          des: "Ygnailh, ygnaiih thflthkh'ngha",
         },
         {
           name: "Cthugha",
@@ -192,6 +227,7 @@ export default {
           multi: 1.79,
           bgm: require("../assets/sound/yang-bgm.ogg"),
           portrait: require("../assets/img/Yang_Guifei4.png"),
+          des: "Ia, ph'nglui mglw'nafh Fomalhaut n'gha-ghaa naf'lthang",
         },
         {
           name: "Nyalathotep",
@@ -200,6 +236,8 @@ export default {
           multi: 0.1,
           bgm: require("../assets/sound/bb-bgm.ogg"),
           portrait: require("../assets/img/BBSummer4.png"),
+          des:
+            "สุดยอดAI จากซูปเปอร์คอมพิวเตอร์บนดวงจันทร์ผู้รักมนุษยชาติมากจนอยากจะทำลายทิ้ง สนุกกับการเล่นไล่จับกับเหยื่อ จึงออมมือให้เสมอ",
         },
         {
           name: "Demonic Bodhisattva of Digital Sea,Beast III/R",
@@ -208,6 +246,8 @@ export default {
           multi: 0.05,
           bgm: require("../assets/sound/Kiara BGM.ogg"),
           portrait: require("../assets/img/Kiarastage04.png"),
+          des:
+            "โพธิสัตว์มารแห่งห้วงทะเลลึก เธอไม่ทำร้ายคุณ แต่มนุษย์ทุกคนที่เข้าใกล้เธอจะค่อยๆหลอมละลายเหมือนฟองน้ำที่ค่อยๆจางหายไปในท้องทะเล",
         },
       ],
       startatt: false,
@@ -219,6 +259,9 @@ export default {
       gameStart: false,
       num: 0,
       ennum: 0,
+      burn:false,
+      burndam:2,
+      burnstack:0
     };
   },
   methods: {
@@ -234,10 +277,16 @@ export default {
         Math.max(Math.floor(Math.random() * maxmon) + 1, minmon) *
         this.enemy[this.ennum].multi;
       //console.log('damage'+this.monattack)
+      if(this.burn==true){
+        this.burnstack+=1
+      }
       return this.monattack;
     },
     playerCal: function () {
-      this.hpplayer = this.hpplayer - this.monattack;
+      if(this.ennum==1){
+      this.hpplayer = this.hpplayer - (this.monattack+(this.burndam**this.burnstack));
+      }else{this.hpplayer = this.hpplayer - this.monattack;}
+      
       // console.log('hp'+this.hpplayer)
       return this.hpplayer;
     },
@@ -256,6 +305,9 @@ export default {
     },
     attack: function () {
       this.startatt = true;
+      if (this.ennum==1){
+        this.burn=true
+      }
     },
     starthp: function () {
       this.hpplayer = this.player[this.num].hp;
